@@ -51,6 +51,19 @@ namespace ProjectScientDay2568.Controllers
                 return BadRequest(_response);
             }
 
+            // Security: never trust the requested role. Only an existing admin (or the very
+            // first account, while no admin exists) may create an admin account.
+            var callerIsAdmin = User.Identity?.IsAuthenticated == true && User.IsInRole(SD.Role_Admin);
+            var adminExists = callerIsAdmin
+                || (await _userManager.GetUsersInRoleAsync(SD.Role_Admin)).Any();
+            if (!RegisterRolePolicy.TryResolve(model.Role, callerIsAdmin, adminExists, out var assignedRole))
+            {
+                _response.StatusCode = HttpStatusCode.Forbidden;
+                _response.IsSuccess = false;
+                _response.ErrorMessages.Add("Only an administrator can create administrator accounts");
+                return StatusCode((int)HttpStatusCode.Forbidden, _response);
+            }
+
             ApplicationUser newUser = new()
             {
                 UserName = model.UserName,
@@ -70,7 +83,7 @@ namespace ProjectScientDay2568.Controllers
                         await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
                         await _roleManager.CreateAsync(new IdentityRole(SD.Role_User));
                     }
-                    if (model.Role.ToLower() == SD.Role_Admin)
+                    if (assignedRole == SD.Role_Admin)
                     {
                         await _userManager.AddToRoleAsync(newUser, SD.Role_Admin);
                     }
