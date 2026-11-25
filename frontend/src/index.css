@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Sarabun", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1.025rem;
+  line-height: 1.6;
+}
+
+/* ปฏิทิน react-day-picker (ThaiDatePicker): สีน้ำเงินตามธีมระบบ ฟอนต์เดียวกับเว็บ */
+.thai-date-picker .rdp-root {
+  --rdp-accent-color: #2563eb;
+  --rdp-accent-background-color: #dbeafe;
+  --rdp-today-color: #2563eb;
+  --rdp-day-height: 40px;
+  --rdp-day-width: 40px;
+  --rdp-day_button-height: 38px;
+  --rdp-day_button-width: 38px;
+  font-family: inherit;
+}
+.thai-date-picker .rdp-dropdowns {
+  font-weight: 600;
+}
