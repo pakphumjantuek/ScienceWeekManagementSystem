@@ -25,7 +25,6 @@
 |---|---|
 | **Backend** | ASP.NET Core Web API (.NET 8), Entity Framework Core 8, SQL Server, ASP.NET Core Identity, JWT, SignalR, AutoMapper, QuestPDF, OpenXML, ImageSharp, Swagger |
 | **Frontend** | React 19, TypeScript 5.8, Vite 7, Redux Toolkit, MUI 7, Tailwind CSS 4, React Router 7, Recharts |
-| **ทดสอบ** | xUnit กับฐานข้อมูลแบบ InMemory (ฝั่ง backend) |
 
 ## จุดเด่นทางเทคนิค
 
@@ -36,7 +35,6 @@
 - **ตรวจสอบย้อนหลังได้** บันทึก Audit Log ของการกระทำสำคัญ
 - **โครงสร้างแบบแยกส่วน** Controller → Service → DbContext ใช้ DTO และ AutoMapper แยกจาก Entity
 - **ฐานข้อมูลที่ดูแลด้วย Migration** กว่า 20 Model และกว่า 60 Migration ตลอดการพัฒนา
-- **มีเทสต์อัตโนมัติฝั่ง backend** กว่า 70 กรณีทดสอบ ครอบคลุมการจัดสายแข่ง บันทึกผล เลขที่เกียรติบัตร และสิทธิ์การดาวน์โหลดเอกสาร
 
 ## โครงสร้างโปรเจกต์
 
